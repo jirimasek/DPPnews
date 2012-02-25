@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY public-transport "http://dpp-news.appspot.com/vocab/public-transport#" >
+]>
+
+
+<rdf:RDF xmlns="http://dpp-news.appspot.com/vocab/public-transport#"
+     xml:base="http://dpp-news.appspot.com/vocab/public-transport#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:public-transport="http://dpp-news.appspot.com/vocab/public-transport#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://dpp-news.appspot.com/vocab/public-transport#"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#affectsLine -->
+
+    <owl:ObjectProperty rdf:about="&public-transport;affectsLine">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdfs:domain rdf:resource="&public-transport;Incident"/>
+        <rdfs:range rdf:resource="&public-transport;Line"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#modeOfTransport -->
+
+    <owl:ObjectProperty rdf:about="&public-transport;modeOfTransport">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&public-transport;Line"/>
+        <rdfs:range rdf:resource="&public-transport;ModeOfTransport"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#isExpectedToBeSolvedAt -->
+
+    <owl:DatatypeProperty rdf:about="&public-transport;isExpectedToBeSolvedAt">
+        <rdfs:domain rdf:resource="&public-transport;Incident"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#number -->
+
+    <owl:DatatypeProperty rdf:about="&public-transport;number">
+        <rdfs:domain rdf:resource="&public-transport;Line"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#originatedAt -->
+
+    <owl:DatatypeProperty rdf:about="&public-transport;originatedAt">
+        <rdfs:domain rdf:resource="&public-transport;Incident"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#stretch -->
+
+    <owl:DatatypeProperty rdf:about="&public-transport;stretch">
+        <rdfs:domain rdf:resource="&public-transport;Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#type -->
+
+    <owl:DatatypeProperty rdf:about="&public-transport;type">
+        <rdfs:domain rdf:resource="&public-transport;Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#wasSolvedAt -->
+
+    <owl:DatatypeProperty rdf:about="&public-transport;wasSolvedAt">
+        <rdfs:domain rdf:resource="&public-transport;Incident"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Incident -->
+
+    <owl:Class rdf:about="&public-transport;Incident"/>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Line -->
+
+    <owl:Class rdf:about="&public-transport;Line">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#ModeOfTransport -->
+
+    <owl:Class rdf:about="&public-transport;ModeOfTransport">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Bus -->
+
+    <owl:NamedIndividual rdf:about="&public-transport;Bus">
+        <rdf:type rdf:resource="&public-transport;ModeOfTransport"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Ferry -->
+
+    <owl:NamedIndividual rdf:about="&public-transport;Ferry">
+        <rdf:type rdf:resource="&public-transport;ModeOfTransport"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Funicular -->
+
+    <owl:NamedIndividual rdf:about="&public-transport;Funicular">
+        <rdf:type rdf:resource="&public-transport;ModeOfTransport"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Subway -->
+
+    <owl:NamedIndividual rdf:about="&public-transport;Subway">
+        <rdf:type rdf:resource="&public-transport;ModeOfTransport"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://dpp-news.appspot.com/vocab/public-transport#Tram -->
+
+    <owl:NamedIndividual rdf:about="&public-transport;Tram">
+        <rdf:type rdf:resource="&public-transport;ModeOfTransport"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
