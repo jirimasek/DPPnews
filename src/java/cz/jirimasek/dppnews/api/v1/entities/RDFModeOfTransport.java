@@ -9,13 +9,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class RDFModeOfTransport
-{   
+{
+
     private final String BUS = "Bus";
     private final String TRAM = "Tram";
     private final String SUBWAY = "Subway";
     private final String FUNICULAR = "Funicular";
     private final String FERRY = "Ferry";
-    
     private String resource;
 
     public RDFModeOfTransport()
@@ -25,26 +25,28 @@ public class RDFModeOfTransport
 
     public RDFModeOfTransport(int line, String type)
     {
-        
-        if (type.toUpperCase().contains("BUS"))
+        if (type != null && !type.isEmpty())
         {
-            type = BUS;
+            if (type.toUpperCase().contains("BUS"))
+            {
+                type = BUS;
+            }
+            else if (type.toUpperCase().contains("TRAM"))
+            {
+                type = TRAM;
+            }
+            else if (type.toUpperCase().contains("METRO"))
+            {
+                type = SUBWAY;
+            }
+            else if (type.contains("Lanová dráha"))
+            {
+                type = FUNICULAR;
+            }
         }
-        else if (type.toUpperCase().contains("TRAM"))
-        {
-            type = TRAM;
-        }
-        else if (type.toUpperCase().contains("METRO"))
-        {
-            type = SUBWAY;
-        }
-        else if (type.contains("Lanová dráha"))
-        {
-            type = FUNICULAR;
-        }
-        
+
         String mot;
-        
+
         if (line > 990)
         {
             mot = SUBWAY;
@@ -69,7 +71,7 @@ public class RDFModeOfTransport
         {
             mot = BUS;
         }
-        
+
         this.resource = RDF.XMLNS_PUBTRANS + mot;
     }
 
