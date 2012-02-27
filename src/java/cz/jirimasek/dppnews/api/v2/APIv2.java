@@ -1,8 +1,8 @@
-package cz.jirimasek.dppnews.api.v1;
+package cz.jirimasek.dppnews.api.v2;
 
 import com.google.appengine.api.datastore.Key;
-import cz.jirimasek.dppnews.api.v1.entities.RDF;
-import cz.jirimasek.dppnews.api.v1.entities.RDFIncident;
+import cz.jirimasek.dppnews.api.v2.entities.JSONFactory;
+import cz.jirimasek.dppnews.api.v2.entities.JSONIncident;
 import cz.jirimasek.dppnews.dao.EventDAO;
 import cz.jirimasek.dppnews.dao.IEventDAO;
 import cz.jirimasek.dppnews.dao.IIncidentDAO;
@@ -15,6 +15,7 @@ import cz.jirimasek.dppnews.dao.entities.Transportation;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -30,42 +31,44 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 /**
- * Třída <code>APIv1</code>
+ * Třída <code>APIv2</code>
  * 
  * @author Jiří Mašek <email@jirimasek.cz>
  */
-@Path("v1/incidents")
-public class APIv1
+@Path("v2/incidents")
+public class APIv2 
 {
     @Context
     private UriInfo context;
 
     @GET
-    @Produces(MediaType.TEXT_XML)
-    public RDF retrieveIncidents(String content)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<JSONIncident> retrieveIncidents(String content)
     {
         IIncidentDAO incidentDAO = new IncidentDAO();
         IEventDAO eventDAO = new EventDAO();
         ITransportationDAO transportationDAO = new TransportationDAO();
         
-        RDF rdf = new RDF();
-
         List<Incident> incidents = incidentDAO.get();
         Map<Key, Event> events = eventDAO.get();
         Map<Key, Transportation> transportations = transportationDAO.get();
         
+        JSONFactory jsonFactory = new JSONFactory();
+        
+        List<JSONIncident> output = new ArrayList<JSONIncident>();
+        
         for (Incident incident : incidents)
         {   
-            rdf.addIncident(new RDFIncident(incident, events, transportations));
+            output.add(jsonFactory.createIncident(incident, events, transportations));
         }
         
-        return rdf;
+        return output;
     }
-
+    
     @GET
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{date}")
-    public RDF retrieveIncidents(@PathParam("date") String date, String content)
+    public List<JSONIncident> retrieveIncidents(@PathParam("date") String date, String content)
     {
         IIncidentDAO incidentDAO = new IncidentDAO();
         IEventDAO eventDAO = new EventDAO();
@@ -83,18 +86,20 @@ public class APIv1
         {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
-        
-        RDF rdf = new RDF();
 
         List<Incident> incidents = incidentDAO.get(d);
         Map<Key, Event> events = eventDAO.get();
         Map<Key, Transportation> transportations = transportationDAO.get();
         
+        JSONFactory jsonFactory = new JSONFactory();
+        
+        List<JSONIncident> output = new ArrayList<JSONIncident>();
+        
         for (Incident incident : incidents)
         {   
-            rdf.addIncident(new RDFIncident(incident, events, transportations));
+            output.add(jsonFactory.createIncident(incident, events, transportations));
         }
         
-        return rdf;
+        return output;
     }
 }

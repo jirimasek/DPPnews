@@ -5,8 +5,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
 /**
+ * Třída <code>RDFEvent</code>
  *
- * @author Jiří Mašek <masekji4@fit.cvut.cz>
+ * @author Jiří Mašek <email@jirimasek.cz>
  */
 @XmlRootElement
 public class RDFEvent

@@ -14,8 +14,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- *
- * @author Jiří Mašek <masekji4@fit.cvut.cz>
+ * Třída <code>RDFIncident</code>
+ * 
+ * @author Jiří Mašek <email@jirimasek.cz>
  */
 @XmlRootElement
 @XmlType(propOrder={"stretch", "origin", "lines", "events", "assumption", "renew"})
